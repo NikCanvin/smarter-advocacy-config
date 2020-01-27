@@ -15,7 +15,13 @@ const server = http.createServer(app);
 app.use(log4js.connectLogger(logger, { level: logger.level }));
 require('./routers/index')(app, server);
 
-// Add your code here
+//console.log('App started!');
+
+// var schedule = require('node-schedule');
+ 
+// var j = schedule.scheduleJob('22 * * * *', function(fireDate){
+//   console.log('The answer to life, the universe, and everything!'+fireDate);
+// });
 
 const port = process.env.PORT || localConfig.port;
 server.listen(port, function(){
