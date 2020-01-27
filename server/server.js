@@ -15,13 +15,29 @@ const server = http.createServer(app);
 app.use(log4js.connectLogger(logger, { level: logger.level }));
 require('./routers/index')(app, server);
 
-//console.log('App started!');
+// Add your code here
+console.log('App started!');
 
-// var schedule = require('node-schedule');
+var schedule = require('node-schedule');
  
-// var j = schedule.scheduleJob('22 * * * *', function(fireDate){
-//   console.log('The answer to life, the universe, and everything!'+fireDate);
-// });
+var j = schedule.scheduleJob('01 * * * *', function(){
+  //console.log('The answer to life, the universe, and everything!');
+  var request = require('request');
+  request('http://getdataeclipsemarketplace-route-default.apps.riffled.os.fyre.ibm.com/get-data', function (error, response, body) {
+    console.log('error:', error); // Print the error if one occurred
+    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+    console.log('body:', body); // Print the HTML for the Google homepage.
+  });
+});
+var j = schedule.scheduleJob('02 * * * *', function(){
+  //console.log('The answer to life, the universe, and everything!');
+  var request = require('request');
+  request('http://getvscode-default.apps.riffled.os.fyre.ibm.com/get-data', function (error, response, body) {
+    console.log('error:', error); // Print the error if one occurred
+    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+    console.log('body:', body); // Print the HTML for the Google homepage.
+  });
+});
 
 const port = process.env.PORT || localConfig.port;
 server.listen(port, function(){
